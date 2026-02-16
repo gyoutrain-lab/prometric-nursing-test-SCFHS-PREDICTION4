@@ -5,335 +5,247 @@
 <title>SCFHS Prometric Pass Prediction Exam</title>
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background: #f4f4f4;
-}
-h1,h2 {
-  text-align: center;
-}
-.section {
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-}
-.question {
-  margin-bottom: 15px;
-}
-.options label {
-  display: block;
-  margin-left: 20px;
-}
-
-/* DOMAIN HEATMAP */
-.heatmap {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 15px;
-}
-.heatmap th,.heatmap td {
-  border: 1px solid #999;
-  padding: 6px;
-  text-align: center;
-}
-.hm-red {background:#c62828;color:#fff;}
-.hm-orange {background:#ef6c00;color:#fff;}
-.hm-yellow {background:#f9a825;}
-.hm-green {background:#2e7d32;color:#fff;}
-
-/* ITEM HEATMAP */
-.hm-correct {background:#2e7d32;color:#fff;}
-.hm-wrong {background:#c62828;color:#fff;}
-.hm-empty {background:#e0e0e0;}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-}
+body { font-family: Arial; margin: 20px; }
+.hidden { display: none; }
+.question { margin-bottom: 15px; }
+.result { background:#f3f3f3; padding:15px; margin-top:20px; }
+.pass { color: green; font-weight: bold; }
+.fail { color: red; font-weight: bold; }
 </style>
 </head>
 
 <body>
 
-<h1>SCFHS Prometric Pass Prediction Exam</h1>
+<h2>SCFHS Prometric Pass Prediction Exam</h2>
 
-<div class="section">
-  Candidate Name:
-  <input type="text" id="candidateName"><br><br>
-  Candidate ID:
-  <input type="text" id="candidateID">
+<label>Name:</label>
+<input type="text" id="name"><br><br>
+
+<label>ID:</label>
+<input type="text" id="id"><br><br>
+
+<button id="startBtn" onclick="startExam()">Start Exam</button>
+
+<form id="examForm" class="hidden">
+
+<!-- QUESTION 1 -->
+<div class="question">
+<p>1. A patient has BP 90/60 mmHg. Priority nursing action?</p>
+<label><input type="radio" name="q1" value="0"> Encourage fluids</label><br>
+<label><input type="radio" name="q1" value="1"> Assess for shock</label><br>
+<label><input type="radio" name="q1" value="0"> Give antihypertensive</label><br>
+<label><input type="radio" name="q1" value="0"> Apply restraints</label>
 </div>
 
-<div class="section" id="startSection">
-  <button onclick="startExam()">Start Exam</button>
+<!-- QUESTION 3 -->
+<div class="question">
+<p>3. A nurse assesses an adult patient with a temperature of 39°C (102.2°F). What is the priority nursing intervention?</p>
+<label><input type="radio" name="q3" value="1"> Administer prescribed antipyretic</label><br>
+<label><input type="radio" name="q3" value="0"> Apply warm blankets</label><br>
+<label><input type="radio" name="q3" value="0"> Encourage ambulation</label><br>
+<label><input type="radio" name="q3" value="0"> Restrict oral fluids</label>
 </div>
 
-<div class="section" id="exam"></div>
-
-<div class="section" id="results" style="display:none;">
-<h2>Result Summary</h2>
-
-<p><strong>Name:</strong> <span id="rName"></span></p>
-<p><strong>ID:</strong> <span id="rID"></span></p>
-<p><strong>Overall Score:</strong> <span id="overallScore"></span>%</p>
-<p><strong>FINAL DECISION:</strong> <span id="finalDecision"></span></p>
-
-<h2>Domain Performance Heatmap</h2>
-<table class="heatmap">
-<tr><th>Domain</th><th>Correct</th><th>Total</th><th>%</th><th>Status</th></tr>
-<tr><td>Vital Signs</td><td id="vC"></td><td>24</td><td id="vP"></td><td id="vS"></td></tr>
-<tr><td>Safety</td><td id="sC"></td><td>20</td><td id="sP"></td><td id="sS"></td></tr>
-<tr><td>Priority</td><td id="pC"></td><td>18</td><td id="pP"></td><td id="pS"></td></tr>
-<tr><td>Pharmacology</td><td id="phC"></td><td>16</td><td id="phP"></td><td id="phS"></td></tr>
-<tr><td>Ethics</td><td id="eC"></td><td>12</td><td id="eP"></td><td id="eS"></td></tr>
-<tr><td>Calculation</td><td id="cC"></td><td>10</td><td id="cP"></td><td id="cS"></td></tr>
-</table>
-
-<h2>Item-Level Heatmap (Q1–Q100)</h2>
-<table class="heatmap" id="itemHeatmap">
-<tr id="itemHeader"><th>Q#</th></tr>
-<tr id="itemRow"><th>Status</th></tr>
-</table>
-<p>🟩 Correct &nbsp; 🟥 Incorrect &nbsp; ⬜ Not Answered</p>
+<!-- QUESTION 4 -->
+<div class="question">
+<p>4. Which pulse site is most appropriate to assess circulation in a patient with shock?</p>
+<label><input type="radio" name="q4" value="1"> Carotid</label><br>
+<label><input type="radio" name="q4" value="0"> Radial</label><br>
+<label><input type="radio" name="q4" value="0"> Pedal</label><br>
+<label><input type="radio" name="q4" value="0"> Brachial</label>
 </div>
+
+<!-- QUESTION 5 -->
+<div class="question">
+<p>5. A patient’s oxygen saturation reads 88% on room air. What is the nurse’s first action?</p>
+<label><input type="radio" name="q5" value="1"> Apply supplemental oxygen</label><br>
+<label><input type="radio" name="q5" value="0"> Encourage deep breathing</label><br>
+<label><input type="radio" name="q5" value="0"> Document the finding</label><br>
+<label><input type="radio" name="q5" value="0"> Recheck in 30 minutes</label>
+</div>
+
+<!-- QUESTION 6 -->
+<div class="question">
+<p>6. Which finding indicates effective pain management?</p>
+<label><input type="radio" name="q6" value="1"> Patient reports pain score decreased from 8 to 3</label><br>
+<label><input type="radio" name="q6" value="0"> Blood pressure increases</label><br>
+<label><input type="radio" name="q6" value="0"> Guarding behavior noted</label><br>
+<label><input type="radio" name="q6" value="0"> Restlessness observed</label>
+</div>
+
+<!-- QUESTION 7 -->
+<div class="question">
+<p>7. A postoperative patient is at risk for deep vein thrombosis. Which nursing action is most effective?</p>
+<label><input type="radio" name="q7" value="1"> Encourage early ambulation</label><br>
+<label><input type="radio" name="q7" value="0"> Limit fluid intake</label><br>
+<label><input type="radio" name="q7" value="0"> Maintain bed rest</label><br>
+<label><input type="radio" name="q7" value="0"> Apply warm compress</label>
+</div>
+
+<!-- QUESTION 8 -->
+<div class="question">
+<p>8. Which sign is most indicative of hypoglycemia?</p>
+<label><input type="radio" name="q8" value="1"> Diaphoresis and tremors</label><br>
+<label><input type="radio" name="q8" value="0"> Polyuria</label><br>
+<label><input type="radio" name="q8" value="0"> Fruity breath odor</label><br>
+<label><input type="radio" name="q8" value="0"> Kussmaul respirations</label>
+</div>
+
+<!-- QUESTION 9 -->
+<div class="question">
+<p>9. A patient receiving IV fluids develops crackles in the lungs. What is the nurse’s priority action?</p>
+<label><input type="radio" name="q9" value="1"> Slow the IV infusion</label><br>
+<label><input type="radio" name="q9" value="0"> Increase fluid rate</label><br>
+<label><input type="radio" name="q9" value="0"> Place patient supine</label><br>
+<label><input type="radio" name="q9" value="0"> Encourage oral fluids</label>
+</div>
+
+<!-- QUESTION 10 -->
+<div class="question">
+<p>10. Which blood pressure reading requires immediate nursing intervention?</p>
+<label><input type="radio" name="q10" value="1"> 78/40 mmHg</label><br>
+<label><input type="radio" name="q10" value="0"> 118/76 mmHg</label><br>
+<label><input type="radio" name="q10" value="0"> 130/84 mmHg</label><br>
+<label><input type="radio" name="q10" value="0"> 140/88 mmHg</label>
+</div>
+
+<!-- QUESTION 11 -->
+<div class="question">
+<p>11. A nurse is calculating intake and output. Which item counts as output?</p>
+<label><input type="radio" name="q11" value="1"> Urine</label><br>
+<label><input type="radio" name="q11" value="0"> IV fluids</label><br>
+<label><input type="radio" name="q11" value="0"> Tube feeding</label><br>
+<label><input type="radio" name="q11" value="0"> Oral water</label>
+</div>
+
+<!-- QUESTION 12 -->
+<div class="question">
+<p>12. Which patient is at greatest risk for aspiration?</p>
+<label><input type="radio" name="q12" value="1"> Stroke patient with dysphagia</label><br>
+<label><input type="radio" name="q12" value="0"> Patient with hypertension</label><br>
+<label><input type="radio" name="q12" value="0"> Patient with anemia</label><br>
+<label><input type="radio" name="q12" value="0"> Patient with rash</label>
+</div>
+
+<!-- QUESTION 13 -->
+<div class="question">
+<p>13. A nurse identifies cyanosis in a patient. This finding indicates inadequate:</p>
+<label><input type="radio" name="q13" value="1"> Oxygenation</label><br>
+<label><input type="radio" name="q13" value="0"> Hydration</label><br>
+<label><input type="radio" name="q13" value="0"> Nutrition</label><br>
+<label><input type="radio" name="q13" value="0"> Elimination</label>
+</div>
+
+<!-- QUESTION 14 -->
+<div class="question">
+<p>14. Which action prevents catheter-associated urinary tract infection (CAUTI)?</p>
+<label><input type="radio" name="q14" value="1"> Maintain closed drainage system</label><br>
+<label><input type="radio" name="q14" value="0"> Disconnect tubing daily</label><br>
+<label><input type="radio" name="q14" value="0"> Place bag above bladder</label><br>
+<label><input type="radio" name="q14" value="0"> Irrigate routinely</label>
+</div>
+
+<!-- QUESTION 15 -->
+<div class="question">
+<p>15. Which finding indicates dehydration?</p>
+<label><input type="radio" name="q15" value="1"> Poor skin turgor</label><br>
+<label><input type="radio" name="q15" value="0"> Bounding pulse</label><br>
+<label><input type="radio" name="q15" value="0"> Edema</label><br>
+<label><input type="radio" name="q15" value="0"> Crackles</label>
+</div>
+
+<!-- QUESTION 16 -->
+<div class="question">
+<p>16. A patient reports chest pain radiating to the left arm. What is the nurse’s priority?</p>
+<label><input type="radio" name="q16" value="1"> Administer oxygen</label><br>
+<label><input type="radio" name="q16" value="0"> Give oral fluids</label><br>
+<label><input type="radio" name="q16" value="0"> Encourage ambulation</label><br>
+<label><input type="radio" name="q16" value="0"> Apply heating pad</label>
+</div>
+
+<!-- QUESTION 17 -->
+<div class="question">
+<p>17. Which lab value requires immediate reporting?</p>
+<label><input type="radio" name="q17" value="1"> Potassium 6.2 mEq/L</label><br>
+<label><input type="radio" name="q17" value="0"> Sodium 138 mEq/L</label><br>
+<label><input type="radio" name="q17" value="0"> Hemoglobin 14 g/dL</label><br>
+<label><input type="radio" name="q17" value="0"> Calcium 9.2 mg/dL</label>
+</div>
+
+<!-- QUESTION 18 -->
+<div class="question">
+<p>18. A confused patient tries to climb out of bed. What is the nurse’s best action?</p>
+<label><input type="radio" name="q18" value="1"> Place bed in lowest position</label><br>
+<label><input type="radio" name="q18" value="0"> Apply restraints immediately</label><br>
+<label><input type="radio" name="q18" value="0"> Leave patient alone</label><br>
+<label><input type="radio" name="q18" value="0"> Turn off lights</label>
+</div>
+
+<!-- QUESTION 19 -->
+<div class="question">
+<p>19. Which intervention reduces risk of pressure injury?</p>
+<label><input type="radio" name="q19" value="1"> Reposition every 2 hours</label><br>
+<label><input type="radio" name="q19" value="0"> Limit mobility</label><br>
+<label><input type="radio" name="q19" value="0"> Massage bony prominences</label><br>
+<label><input type="radio" name="q19" value="0"> Keep head elevated constantly</label>
+</div>
+
+<!-- QUESTION 20 -->
+<div class="question">
+<p>20. A patient’s respiratory rate is 8/min. This finding indicates:</p>
+<label><input type="radio" name="q20" value="1"> Respiratory depression</label><br>
+<label><input type="radio" name="q20" value="0"> Normal breathing</label><br>
+<label><input type="radio" name="q20" value="0"> Hyperventilation</label><br>
+<label><input type="radio" name="q20" value="0"> Anxiety</label>
+</div>
+
+<div class="question">
+<p>2. Normal adult respiratory rate?</p>
+<label><input type="radio" name="q2" value="1"> 12–20/min</label><br>
+<label><input type="radio" name="q2" value="0"> 6–10/min</label><br>
+<label><input type="radio" name="q2" value="0"> 22–30/min</label><br>
+<label><input type="radio" name="q2" value="0"> 30–40/min</label>
+</div>
+
+<button type="submit">Submit Exam</button>
+
+</form>
+
+<div id="result" class="result hidden"></div>
 
 <script>
-const questions = [
-
-/* ---------- VITAL SIGNS (1–24) ---------- */
-{q:"A 68-year-old patient has BP 86/54, HR 124, RR 28, SpO₂ 91%. What is the PRIORITY action?",o:["Recheck BP","Notify physician","Administer IV fluids","Document findings"],a:2,cat:"vital",r:"Hypotension with tachycardia indicates shock; fluids come before notification."},
-
-{q:"A postoperative patient has RR 8/min and is difficult to arouse. What should the nurse do FIRST?",o:["Apply oxygen","Stimulate patient","Call rapid response","Check pupils"],a:2,cat:"vital",r:"Respiratory depression is life-threatening and triggers emergency response."},
-
-{q:"A patient’s temperature is 39.5°C, HR 118, BP 92/60. Which interpretation is MOST accurate?",o:["Expected fever response","Dehydration only","Possible sepsis","Pain reaction"],a:2,cat:"vital",r:"Fever + hypotension + tachycardia suggests sepsis."},
-
-{q:"SpO₂ drops from 96% to 88% over 10 minutes. What does this TREND indicate?",o:["Equipment error","Improving oxygenation","Respiratory compromise","Normal variation"],a:2,cat:"vital",r:"Trend deterioration matters more than single values in SCFHS logic."},
-
-{q:"A trauma patient has BP 90/58 and cool clammy skin. Priority interpretation?",o:["Pain response","Neurogenic shock","Hypovolemic shock","Anxiety"],a:2,cat:"vital",r:"Hypotension with cool skin = hypovolemia until proven otherwise."},
-
-{q:"Which vital sign finding triggers FAIL-FAST logic?",o:["BP 130/88","HR 102","RR 30","Temp 37.8"],a:2,cat:"vital",r:"RR >30 is an immediate respiratory red flag."},
-
-{q:"A patient’s BP is 84/50 after antihypertensive administration. First action?",o:["Document","Reassess in 30 min","Place patient supine","Educate patient"],a:2,cat:"vital",r:"Immediate perfusion support comes before documentation."},
-
-{q:"A diabetic patient has HR 132 and BP 88/56. What is the priority concern?",o:["Hypoglycemia","Shock","Infection","Pain"],a:1,cat:"vital",r:"Vital signs override diagnosis speculation."},
-
-{q:"Which BP requires immediate escalation?",o:["118/76","134/82","90/60","128/84"],a:2,cat:"vital",r:"Borderline hypotension requires immediate attention in SCFHS exams."},
-
-{q:"A patient’s RR increases from 18 to 26 with stable BP. What is priority?",o:["Observe","Assess oxygenation","Administer fluids","Document"],a:1,cat:"vital",r:"RR change is an early deterioration marker."},
-
-{q:"A post-op patient’s SpO₂ is 89% on room air. Best action?",o:["Encourage deep breathing","Apply oxygen","Notify physician","Document"],a:1,cat:"vital",r:"Immediate oxygenation beats notification."},
-
-{q:"Which vital sign is MOST predictive of deterioration?",o:["Temperature","Blood pressure","Respiratory rate","Pulse"],a:2,cat:"vital",r:"RR is the earliest deterioration signal."},
-
-{q:"HR 120, BP 88/60, urine output low. Priority?",o:["Pain control","Fluid resuscitation","Antibiotics","Documentation"],a:1,cat:"vital",r:"Perfusion restoration is first."},
-
-{q:"A patient reports dizziness; BP 82/48. First action?",o:["Sit patient up","Lay patient flat","Check glucose","Notify physician"],a:1,cat:"vital",r:"Improve cerebral perfusion immediately."},
-
-{q:"Which vital sign change is MOST concerning?",o:["Temp 38.2","HR 110","RR 32","BP 140/90"],a:2,cat:"vital",r:"RR >30 is a fail-fast indicator."},
-
-{q:"SpO₂ improves after oxygen. What does this confirm?",o:["Equipment error","Respiratory cause","Cardiac cause","Anxiety"],a:1,cat:"vital",r:"Response confirms respiratory etiology."},
-
-{q:"BP drops after spinal anesthesia. Best response?",o:["Document","Administer fluids","Wait","Educate"],a:1,cat:"vital",r:"Immediate hemodynamic support required."},
-
-{q:"Which finding overrides pain complaints?",o:["BP 88/54","Pain score 9","Anxiety","Nausea"],a:0,cat:"vital",r:"Vital signs override subjective symptoms."},
-
-{q:"A patient has RR 10 after opioid. Priority?",o:["Reassess later","Administer naloxone","Oxygen only","Document"],a:1,cat:"vital",r:"Respiratory depression requires reversal."},
-
-{q:"Which vital sign suggests imminent collapse?",o:["HR 98","BP 100/60","RR 34","Temp 38"],a:2,cat:"vital",r:"Extreme tachypnea signals impending failure."},
-
-{q:"Trend shows BP dropping hourly. Best interpretation?",o:["Normal recovery","Delayed response","Progressive shock","Pain"],a:2,cat:"vital",r:"Trend deterioration is critical."},
-
-{q:"A patient with pneumonia has SpO₂ 86%. First action?",o:["Chest x-ray","Apply oxygen","Antibiotics","Document"],a:1,cat:"vital",r:"Oxygenation before diagnosis confirmation."},
-
-{q:"Which is a SCFHS vital sign trap?",o:["Immediate action","Trend analysis","Continue monitoring","Escalation"],a:2,cat:"vital",r:"“Continue monitoring” is often unsafe."},
-
-{q:"Which vital sign abnormality demands action even if asymptomatic?",o:["BP 88/56","Temp 38","HR 104","Pain 2"],a:0,cat:"vital",r:"Hypotension is never ignored."},
-
-/* ---------- SAFETY / FAIL-FAST (25–44) ---------- */
-{q:"Which action represents a DELAY trap?",o:["Oxygen","IV fluids","Reassess in 30 minutes","Rapid response"],a:2,cat:"safety",r:"Delay equals unsafe in SCFHS logic."},
-
-{q:"A confused patient attempts to leave bed. Priority?",o:["Educate","Apply restraints per policy","Document","Delegate"],a:1,cat:"safety",r:"Immediate injury prevention."},
-
-{q:"A patient aspirates during feeding. First action?",o:["Notify physician","Suction airway","Document","Reposition later"],a:1,cat:"safety",r:"Airway protection is fail-fast."},
-
-{q:"Which is UNSAFE delegation?",o:["Vitals to CNA","Ambulation to CNA","Assessment to CNA","Hygiene to CNA"],a:2,cat:"safety",r:"Assessment cannot be delegated."},
-
-{q:"Medication error suspected. First step?",o:["Complete incident report","Assess patient","Notify supervisor","Document"],a:1,cat:"safety",r:"Patient safety before paperwork."},
-
-{q:"Which answer is partially correct but unsafe?",o:["Teach patient","Monitor closely","Delay treatment","Escalate"],a:2,cat:"safety",r:"Delay is the danger."},
-
-{q:"A patient refuses life-saving treatment. Priority?",o:["Argue","Assess competence","Document","Call family"],a:1,cat:"safety",r:"Capacity assessment comes first."},
-
-{q:"Which scenario triggers FAIL-FAST?",o:["Mild pain","Stable vitals","Sudden LOC","Anxiety"],a:2,cat:"safety",r:"Loss of consciousness is immediate danger."},
-
-{q:"A fall just occurred. First action?",o:["Incident report","Assess patient","Notify family","Document"],a:1,cat:"safety",r:"Assessment before documentation."},
-
-{q:"Which is the ONE-DANGER rule example?",o:["Multiple steps","Teaching","Immediate airway","Delegation"],a:2,cat:"safety",r:"Address the single lethal threat first."},
-
-/* ---------- PRIORITY / ABC (45–62) ---------- */
-{q:"Which patient is seen FIRST?",o:["Pain 8/10","BP 88/54","Anxious","Fever"],a:1,cat:"priority",r:"Circulation failure overrides all."},
-
-{q:"Airway compromise signs include:",o:["Tachycardia","Stridor","Hypertension","Fever"],a:1,cat:"priority",r:"Stridor = airway emergency."},
-
-{q:"Which overrides doctor’s order?",o:["Policy","Safety","Documentation","Teaching"],a:1,cat:"priority",r:"Safety always supersedes orders."},
-
-{q:"A patient gurgling. First action?",o:["Suction","Oxygen","Call MD","Document"],a:0,cat:"priority",r:"Clear airway first."},
-
-{q:"ABC order is broken when:",o:["Airway clear","Breathing stable","Circulation failing","Pain present"],a:2,cat:"priority",r:"Perfusion failure reactivates ABC."},
-
-{q:"Which is NOT a priority cue?",o:["SpO₂ 85%","BP 88/50","RR 32","Pain score 6"],a:3,cat:"priority",r:"Pain alone is not priority."},
-
-{q:"A patient is cyanotic. Priority?",o:["IV access","Oxygen","ECG","Labs"],a:1,cat:"priority",r:"Oxygen first."},
-
-{q:"Which patient can wait?",o:["RR 32","BP 84/50","SpO₂ 90%","Pain 9"],a:3,cat:"priority",r:"Pain without instability can wait."},
-
-{q:"Which is circulation support?",o:["Oxygen","Fluids","Positioning","All"],a:3,cat:"priority",r:"All can support circulation."},
-
-{q:"ABC means:",o:["Assess","Balance","Care","Airway first"],a:3,cat:"priority",r:"Airway is absolute first gate."},
-
-/* ---------- PHARMACOLOGY (63–78) ---------- */
-{q:"BP drops after antihypertensive. Action?",o:["Give next dose","Hold medication","Document","Teach"],a:1,cat:"pharma",r:"Hold unsafe medication."},
-
-{q:"Which med causes respiratory depression?",o:["Acetaminophen","Morphine","Furosemide","Amoxicillin"],a:1,cat:"pharma",r:"Opioids depress respiration."},
-
-{q:"Naloxone is used for:",o:["Pain","Hypotension","Opioid overdose","Sepsis"],a:2,cat:"pharma",r:"Opioid reversal."},
-
-{q:"Which requires BP check before giving?",o:["Insulin","Beta-blocker","Antibiotic","Vitamin"],a:1,cat:"pharma",r:"Beta-blockers affect BP."},
-
-{q:"A patient is dizzy after diuretic. Cause?",o:["Hypervolemia","Hypovolemia","Infection","Pain"],a:1,cat:"pharma",r:"Volume depletion."},
-
-{q:"Which med is held if HR <60?",o:["Digoxin","Insulin","Antibiotic","NSAID"],a:0,cat:"pharma",r:"Digoxin lowers HR."},
-
-{q:"Administer oxygen before:",o:["Bronchodilator","Steroid","Antibiotic","Antipyretic"],a:0,cat:"pharma",r:"Correct hypoxia first."},
-
-{q:"Which is a medication safety trap?",o:["Hold drug","Clarify order","Double dose","Assess first"],a:2,cat:"pharma",r:"Never double dose."},
-
-/* ---------- ETHICS / LEGAL (79–90) ---------- */
-{q:"Informed consent requires:",o:["Nurse explanation","Physician explanation","Family approval","Documentation"],a:1,cat:"ethics",r:"Provider explains procedure."},
-
-{q:"Patient refuses care. Nurse should:",o:["Force care","Respect refusal","Call police","Ignore"],a:1,cat:"ethics",r:"Autonomy respected if competent."},
-
-{q:"Confidentiality breach occurs when:",o:["Report to team","Discuss in hallway","Chart care","Handoff"],a:1,cat:"ethics",r:"Public discussion violates privacy."},
-
-{q:"Which is ethical priority?",o:["Policy","Patient safety","Efficiency","Cost"],a:1,cat:"ethics",r:"Safety overrides all."},
-
-{q:"A confused patient signs consent. Valid?",o:["Yes","No","Ask family","Document"],a:1,cat:"ethics",r:"Capacity required."},
-
-{q:"Mandatory reporting example?",o:["Abuse","Refusal","Pain","Anxiety"],a:0,cat:"ethics",r:"Abuse must be reported."},
-
-{q:"End-of-life care priority?",o:["Cure","Comfort","Documentation","Efficiency"],a:1,cat:"ethics",r:"Comfort focused."},
-
-{q:"Which is nurse advocacy?",o:["Follow orders","Protect patient","Ignore concern","Document only"],a:1,cat:"ethics",r:"Advocacy protects patient."},
-
-{q:"Legal responsibility includes:",o:["Delegation","Assessment","Teaching","All"],a:3,cat:"ethics",r:"All are nurse responsibilities."},
-
-{q:"Ethics vs emotion?",o:["Emotion wins","Ethics wins","Family decides","Policy only"],a:1,cat:"ethics",r:"Ethics over emotion."},
-
-{q:"Which violates scope?",o:["Assessment by CNA","Vitals by CNA","Hygiene by CNA","Transport by CNA"],a:0,cat:"ethics",r:"Assessment cannot be delegated."},
-
-{q:"Ethical dilemma resolution uses:",o:["Feelings","Safety","Speed","Opinion"],a:1,cat:"ethics",r:"Safety is ethical anchor."},
-
-/* ---------- CALCULATION (91–100) ---------- */
-{q:"Order: 500 mL over 5 hours. mL/hr?",o:["50","100","125","150"],a:1,cat:"calc",r:"500 ÷ 5 = 100 mL/hr."},
-
-{q:"Infuse 1000 mL over 8 hrs. Rate?",o:["100","125","150","175"],a:1,cat:"calc",r:"1000 ÷ 8 = 125."},
-
-{q:"Order: 250 mL in 2 hrs. Rate?",o:["100","125","150","200"],a:1,cat:"calc",r:"250 ÷ 2 = 125."},
-
-{q:"Order: 600 mL in 6 hrs. Rate?",o:["50","75","100","125"],a:2,cat:"calc",r:"600 ÷ 6 = 100."},
-
-{q:"Order: 120 mL/hr × 4 hrs. Total?",o:["360","420","480","500"],a:2,cat:"calc",r:"120 × 4 = 480."},
-
-{q:"Order: 1 L over 10 hrs. Rate?",o:["80","90","100","110"],a:2,cat:"calc",r:"1000 ÷ 10 = 100."},
-
-{q:"Order: 75 mL/hr × 8 hrs. Total?",o:["500","550","600","650"],a:2,cat:"calc",r:"75 × 8 = 600."},
-
-{q:"Order: 300 mL in 3 hrs. Rate?",o:["50","75","100","125"],a:2,cat:"calc",r:"300 ÷ 3 = 100."},
-
-{q:"Order: 900 mL in 9 hrs. Rate?",o:["80","90","100","110"],a:2,cat:"calc",r:"900 ÷ 9 = 100."},
-
-{q:"Order: 200 mL in 4 hrs. Rate?",o:["40","50","60","80"],a:1,cat:"calc",r:"200 ÷ 4 = 50."}
-
-];
-
-function startExam(){
-  document.getElementById("startSection").style.display="none";
-  const examDiv = document.getElementById("exam");
-  examDiv.innerHTML="";
-
-  questions.forEach((q,i)=>{
-    let html = `<div class="question"><p><strong>${i+1}. ${q.q}</strong></p><div class="options">`;
-    q.o.forEach((opt,idx)=>{
-      html+=`<label><input type="radio" name="q${i}" value="${idx}"> ${opt}</label>`;
-    });
-    html+=`</div></div>`;
-    examDiv.innerHTML+=html;
-  });
-
-  examDiv.innerHTML+=`<button onclick="submitExam()">Submit Exam</button>`;
+function startExam() {
+  if (!document.getElementById("name").value || !document.getElementById("id").value) {
+    alert("Enter Name and ID");
+    return;
+  }
+  document.getElementById("startBtn").classList.add("hidden");
+  document.getElementById("examForm").classList.remove("hidden");
 }
 
-function heatClass(p){
-if(p<50) return "hm-red";
-if(p<60) return "hm-orange";
-if(p<70) return "hm-yellow";
-return "hm-green";
-}
+document.getElementById("examForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-function buildItemHeatmap(results){
-  const header=document.getElementById("itemHeader");
-  const row=document.getElementById("itemRow");
-  header.innerHTML="<th>Q#</th>";
-  row.innerHTML="<th>Status</th>";
+  let score = 0;
+  let total = 2;
 
-  results.forEach((r,i)=>{
-    header.innerHTML+=`<th>${i+1}</th>`;
-    let cls="hm-empty",sym="—";
-    if(r===true){cls="hm-correct";sym="✔";}
-    if(r===false){cls="hm-wrong";sym="✖";}
-    row.innerHTML+=`<td class="${cls}">${sym}</td>`;
-  });
-}
+  for (let i = 1; i <= total; i++) {
+    let q = document.querySelector(`input[name="q${i}"]:checked`);
+    if (q) score += Number(q.value);
+  }
 
-function submitExam(){
-let scores={vital:0,safety:0,priority:0,pharma:0,ethics:0,calc:0};
-let totalCorrect=0;
-let itemResults=[];
+  let percent = (score / total) * 100;
+  let decision = percent >= 75 ? "GO" : "NO-GO";
 
-questions.forEach((q,i)=>{
-let sel=document.querySelector(`input[name=q${i}]:checked`);
-if(!sel){itemResults.push(null);}
-else if(parseInt(sel.value)===q.a){
-scores[q.cat]++; totalCorrect++; itemResults.push(true);
-} else {itemResults.push(false);}
+  document.getElementById("examForm").classList.add("hidden");
+
+  document.getElementById("result").innerHTML = `
+    <h3>Result</h3>
+    Score: ${score}/${total} (${percent.toFixed(1)}%)<br>
+    Decision: <span class="${decision === "GO" ? "pass" : "fail"}">${decision}</span>
+  `;
+  document.getElementById("result").classList.remove("hidden");
 });
-
-document.getElementById("rName").innerText=candidateName.value;
-document.getElementById("rID").innerText=candidateID.value;
-
-let overall=Math.round((totalCorrect/100)*100);
-document.getElementById("overallScore").innerText=overall;
-
-let noRed=true;
-for(let k in scores){
-let pct=Math.round((scores[k]/domainTotals[k])*100);
-document.getElementById(k.charAt(0)+"C").innerText=scores[k];
-document.getElementById(k.charAt(0)+"P").innerText=pct+"%";
-let s=document.getElementById(k.charAt(0)+"S");
-s.innerText=pct<50?"RED":pct<60?"ORANGE":pct<70?"YELLOW":"GREEN";
-s.className=heatClass(pct);
-if(pct<50) noRed=false;
-}
-
-let go = overall>=65 && scores.safety/domainTotals.safety>=0.7 && noRed;
-document.getElementById("finalDecision").innerText =
-go?"GO – READY FOR PROMETRIC":"NO-GO – REMEDIATION REQUIRED";
-
-buildItemHeatmap(itemResults);
-document.getElementById("results").style.display="block";
-}
 </script>
 
 </body>
